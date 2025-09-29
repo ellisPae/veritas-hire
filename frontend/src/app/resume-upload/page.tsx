@@ -1,10 +1,30 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import ResumeUpload from "@/components/ResumeUpload";
 import { motion } from "framer-motion";
+import type { ResumeUploadState } from "@/types/resume";
 
 export default function ResumeUploadPage() {
+  const [fileState, setFileState] = useState<ResumeUploadState>({
+    file: null,
+    isUploaded: false,
+    error: null,
+  });
+
+  const handleFileUpload = (file: File) => {
+    setFileState({ file, isUploaded: true, error: null });
+  };
+
+  const handleFileError = (error: string) => {
+    setFileState({ file: null, isUploaded: false, error });
+  };
+
+  const handleRemoveFile = () => {
+    setFileState({ file: null, isUploaded: false, error: null });
+  };
+
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 px-6">
       {/* Background blobs */}
@@ -36,8 +56,13 @@ export default function ResumeUploadPage() {
           </p>
         </div>
 
-        {/* Upload Component */}
-        <ResumeUpload />
+        {/* Upload Component with state + handlers */}
+        <ResumeUpload
+          fileState={fileState}
+          onFileUpload={handleFileUpload}
+          onFileError={handleFileError}
+          onRemoveFile={handleRemoveFile}
+        />
       </motion.div>
 
       {/* Skip button pinned near bottom */}
