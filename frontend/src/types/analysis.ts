@@ -1,7 +1,13 @@
 export type InsightType = "skills" | "experience" | "growth";
 
 export interface AnalysisInsights {
-  skills: string;
+  skills: {
+    narrative: {};
+    keywordsMatch: {
+      matched: string[];
+      missing: string[];
+    };
+  };
   experience: string;
   growth: string;
 }
