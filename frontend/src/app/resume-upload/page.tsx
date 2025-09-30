@@ -41,40 +41,50 @@ export default function ResumeUploadPage() {
 
       {/* Upload card */}
       <motion.div
-        initial={{ opacity: 0, y: 40, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-md bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 text-center space-y-6"
+        className="relative z-10 w-full max-w-lg bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-3xl shadow-2xl p-10 text-center space-y-8"
       >
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white">
             Upload Your Resume
           </h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-            Upload your resume to get tailored insights on strengths,
-            weaknesses, and job match scores.
+          <p className="mt-4 text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+            Upload your resume to uncover tailored insights on your strengths,
+            weaknesses, and how well you align with your target roles.
           </p>
-        </div>
+        </motion.div>
 
         {/* Upload Component with state + handlers */}
-        <ResumeUpload
-          fileState={fileState}
-          onFileUpload={handleFileUpload}
-          onFileError={handleFileError}
-          onRemoveFile={handleRemoveFile}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          <ResumeUpload
+            fileState={fileState}
+            onFileUpload={handleFileUpload}
+            onFileError={handleFileError}
+            onRemoveFile={handleRemoveFile}
+          />
+        </motion.div>
       </motion.div>
 
       {/* Skip button pinned near bottom */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.6 }}
-        className="absolute bottom-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9, duration: 0.6 }}
+        className="absolute bottom-10"
       >
         <Link
           href="/job-listing"
-          className="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+          className="px-5 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
         >
           Skip to Job Listing →
         </Link>
