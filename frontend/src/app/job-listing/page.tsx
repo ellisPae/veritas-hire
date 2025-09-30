@@ -1,18 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import JobListingForm from "@/components/JobListingForm";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import JobListingForm from "@/components/JobListingForm";
+import type { JobDetails } from "@/types/job";
 
 export default function JobListingPage() {
   const router = useRouter();
 
-  const handleSubmit = (job: {
-    title: string;
-    company: string;
-    description: string;
-  }) => {
-    // MVP: store job in localStorage
+  const handleSubmit = (job: JobDetails) => {
+    // MVP: persist in localStorage
     localStorage.setItem("jobListing", JSON.stringify(job));
     router.push("/results");
   };
@@ -31,7 +29,7 @@ export default function JobListingPage() {
         transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
       />
 
-      {/* Main card */}
+      {/* Card */}
       <motion.div
         initial={{ opacity: 0, y: 40, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -40,16 +38,31 @@ export default function JobListingPage() {
       >
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Tell Us About the Job
+            Tell Us About the Role
           </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-            Tell us about the role you’re interested in. Share the job details,
-            and we’ll show you how your resume aligns—spotlighting your
-            strongest skills and the areas to strengthen.
+            Fill in the job details and let our AI reveal how they align with
+            the right skills and experience. We’ll surface your strengths,
+            highlight the gaps, and give you a clearer path forward.
           </p>
         </div>
 
+        {/* Job Listing Form */}
         <JobListingForm onSubmit={handleSubmit} />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9, duration: 0.6 }}
+        className="absolute bottom-10"
+      >
+        <Link
+          href="/results"
+          className="px-5 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+        >
+          Skip to Results →
+        </Link>
       </motion.div>
     </main>
   );
