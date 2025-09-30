@@ -172,7 +172,13 @@ export default function AnalysisResults({
                 ? experienceMatch
                 : growthPotential
             }
-            insight={insights[activeCard]}
+            insight={
+              activeCard === "skills"
+                ? insights.skills
+                : activeCard === "experience"
+                ? insights.experience
+                : insights.growth
+            }
             onClose={() => setActiveCard(null)}
           />
         )}

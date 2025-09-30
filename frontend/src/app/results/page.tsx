@@ -56,20 +56,61 @@ export default function ResultsPage() {
       "Refine resume keywords to better mirror target job descriptions.",
     ],
     insights: {
-      skills: `
-        Your strongest signals come from modern frontend engineering—React, TypeScript, component
-        architecture, and testing. To widen impact, build fluency in backend services (Node.js or Python)
-        and cloud tooling (AWS) so you can confidently contribute across the stack and lead end-to-end work.
-      `,
+      skills: {
+        narrative: `
+          Your technical strengths are firmly rooted in modern frontend engineering. You demonstrate strong
+          fluency in React, TypeScript, and component-driven design patterns, supported by a solid grasp of
+          responsive layouts, accessibility best practices, and automated testing. These foundations make you
+          an immediately valuable contributor to teams building user-focused applications at scale.  
+
+          Beyond individual features, your skills in working with design systems, integrating APIs, and
+          maintaining consistency across codebases highlight a thoughtful and methodical engineering style.
+          You’ve also shown capability in leveraging CI/CD pipelines and agile practices, underscoring your
+          readiness to work effectively in fast-moving, iterative environments.  
+
+          To strengthen your technical portfolio further, the most impactful next step would be broadening
+          into backend and infrastructure competencies. Gaining proficiency with Node.js or Python for
+          server-side development, experimenting with Dockerized workflows, and deploying services on AWS
+          would extend your impact across the stack. By pairing your proven frontend mastery with cross-stack
+          fluency, you would not only increase your versatility but also position yourself as a candidate
+          capable of owning entire product lifecycles from ideation to deployment.
+        `,
+        keywordsMatch: {
+          matched: ["React.js", "TypeScript", "Agile", "CI/CD"],
+          missing: ["AWS", "Node.js", "Docker"],
+        },
+      },
       experience: `
-        You’ve shipped features consistently in agile settings and collaborate well across design and product.
-        Depth with distributed systems and production backend patterns is lighter. Highlight any service work,
-        deployment ownership, or CI/CD involvement to present a more balanced profile.
+        Your professional track record demonstrates consistent delivery in agile environments, where you’ve
+        partnered effectively with designers, product managers, and fellow engineers to ship polished features.
+        You show strength in communication and collaboration, and you’ve worked on projects with clear user
+        impact and measurable value.  
+
+        Where your experience could deepen is in broader systems exposure. Hands-on involvement with backend
+        architecture, database optimization, or distributed system design is currently less emphasized. Adding
+        evidence of these skills—whether through contributions to APIs, scaling efforts, or infrastructure
+        improvements—will strengthen your profile and demonstrate readiness for more complex engineering
+        challenges.  
+
+        Employers will also be looking for signs of ownership beyond individual tickets. Highlighting leadership
+        in sprint planning, mentoring junior developers, or driving process improvements would reinforce your
+        credibility as someone who elevates not just code, but teams.
       `,
       growth: `
-        Curiosity and velocity are clear: you adopt new tools quickly and iterate thoughtfully. Codify that
-        momentum with concrete milestones—publish a small service, deploy to AWS, write a short technical
-        post—to convert potential into visible, compounding outcomes.
+        Growth potential is one of your standout qualities. You’ve shown a clear appetite for learning new
+        technologies and adapting quickly to shifting requirements, which suggests resilience and strong long-term
+        value to employers. Your rapid uptake of tools like React, TypeScript, and CI/CD pipelines already
+        signals adaptability; the next step is to turn that adaptability into thought leadership.  
+
+        A focused plan of action could accelerate your trajectory. Setting specific milestones—deploying a
+        personal project to AWS, contributing to an open-source library, or writing technical articles about
+        lessons learned—will create tangible proof of your growth. Each milestone compounds: not only will
+        you build technical depth, but you’ll also create a visible narrative of initiative and continuous
+        development.  
+
+        Taken together, these steps would present you as someone not just keeping pace with technology, but
+        actively shaping your own path forward. That story resonates powerfully with employers seeking
+        engineers who can grow into leadership and bring fresh perspectives to their teams.
       `,
     },
   };
