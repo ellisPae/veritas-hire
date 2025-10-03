@@ -188,32 +188,35 @@ export default function AnalysisResults({
 }
 
 /* Sub-components */
-function MatchCard({
-  label,
-  score,
-  color,
-  onClick,
-}: {
+const MatchCard: React.FC<{
   label: string;
   score: number;
-  color: string;
   onClick: () => void;
-}) {
+}> = ({ label, score, onClick }) => {
+  const getTextColor = (value: number) => {
+    if (value >= 80) return "text-green-600"; // high score
+    if (value >= 60) return "text-yellow-600"; // medium score
+    return "text-red-600"; // low score
+  };
+
   return (
     <motion.div
       variants={itemVariants}
       whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.97 }}
       onClick={onClick}
-      className="cursor-pointer bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl shadow-md p-8 text-center transition-all"
+      className="cursor-pointer bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm 
+                 rounded-2xl shadow-md p-8 text-center transition-all"
     >
       <h3 className="font-bold text-gray-900 dark:text-white text-lg">
         {label}
       </h3>
-      <p className={`mt-3 text-3xl font-bold text-${color}-600`}>{score}%</p>
+      <p className={`mt-3 text-3xl font-bold ${getTextColor(score)}`}>
+        {score}%
+      </p>
     </motion.div>
   );
-}
+};
 
 function DetailCard({
   icon,
