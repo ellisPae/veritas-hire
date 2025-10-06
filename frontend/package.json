@@ -11,7 +11,10 @@
   "dependencies": {
     "framer-motion": "^12.23.22",
     "lucide-react": "^0.544.0",
+    "mammoth": "^1.11.0",
     "next": "^15.5.4",
+    "pdf-parse": "^2.1.6",
+    "pdfjs-dist": "^5.4.149",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },

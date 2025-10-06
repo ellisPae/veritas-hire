@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import ResumeUpload from "@/components/ResumeUpload";
 import { motion } from "framer-motion";
 import type { ResumeUploadState } from "@/types/resume";
@@ -12,6 +12,8 @@ export default function ResumeUploadPage() {
     isUploaded: false,
     error: null,
   });
+
+  const router = useRouter();
 
   const handleFileUpload = (file: File) => {
     setFileState({ file, isUploaded: true, error: null });
@@ -25,9 +27,23 @@ export default function ResumeUploadPage() {
     setFileState({ file: null, isUploaded: false, error: null });
   };
 
+  // ✅ After the API finishes parsing, go to Job Listing
+  const handleAnalysisComplete = (data: any) => {
+    // optional: stash for later (e.g., results page)
+    try {
+      sessionStorage.setItem("analysisResults", JSON.stringify(data));
+    } catch {}
+    router.push("/job-listing");
+  };
+
+  // ✅ Skip also goes to Job Listing
+  const handleSkip = () => {
+    router.push("/job-listing");
+  };
+
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 px-6">
-      {/* Background blobs */}
+      {/* background blobs */}
       <motion.div
         className="absolute -top-40 -left-40 w-96 h-96 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
         animate={{ x: [0, 40, -40, 0], y: [0, -30, 30, 0] }}
@@ -39,7 +55,7 @@ export default function ResumeUploadPage() {
         transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
       />
 
-      {/* Upload card */}
+      {/* card */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -60,7 +76,6 @@ export default function ResumeUploadPage() {
           </p>
         </motion.div>
 
-        {/* Upload Component with state + handlers */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,23 +86,24 @@ export default function ResumeUploadPage() {
             onFileUpload={handleFileUpload}
             onFileError={handleFileError}
             onRemoveFile={handleRemoveFile}
+            onAnalysisComplete={handleAnalysisComplete} // 👈 navigate on success
           />
         </motion.div>
       </motion.div>
 
-      {/* Skip button pinned near bottom */}
+      {/* Skip button */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.9, duration: 0.6 }}
         className="absolute bottom-10"
       >
-        <Link
-          href="/job-listing"
+        <button
+          onClick={handleSkip}
           className="px-5 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
         >
           Skip to Job Listing →
-        </Link>
+        </button>
       </motion.div>
     </main>
   );
