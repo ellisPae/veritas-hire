@@ -488,7 +488,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@napi-rs/canvas@npm:^0.1.77":
+"@napi-rs/canvas@npm:^0.1.80":
   version: 0.1.80
   resolution: "@napi-rs/canvas@npm:0.1.80"
   dependencies:
@@ -2278,8 +2278,9 @@ __metadata:
     lucide-react: "npm:^0.544.0"
     mammoth: "npm:^1.11.0"
     next: "npm:^15.5.4"
-    pdf-parse: "npm:^2.1.6"
-    pdfjs-dist: "npm:^5.4.149"
+    openai: "npm:^6.2.0"
+    pdf2json: "npm:^3.2.2"
+    pdfjs-dist: "npm:^5.4.296"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
     tailwindcss: "npm:^4"
@@ -3375,6 +3376,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"openai@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "openai@npm:6.2.0"
+  peerDependencies:
+    ws: ^8.18.0
+    zod: ^3.25 || ^4.0
+  peerDependenciesMeta:
+    ws:
+      optional: true
+    zod:
+      optional: true
+  bin:
+    openai: bin/cli
+  checksum: 10c0/3aea45eeb4055b6daf179d13e4bac170992eded94d684a59c75af40ca985999e6e1682eb666f308d83d6d6423d57d3ca18eed27966ccf2a8f8ef5b86e0559387
+  languageName: node
+  linkType: hard
+
 "option@npm:~0.2.1":
   version: 0.2.4
   resolution: "option@npm:0.2.4"
@@ -3469,24 +3487,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pdf-parse@npm:^2.1.6":
-  version: 2.1.6
-  resolution: "pdf-parse@npm:2.1.6"
-  dependencies:
-    pdfjs-dist: "npm:^5.4.149"
-  checksum: 10c0/c9627b054da9b4279ab18d235f89b44ffbd5546d80143e1a48c2c4f2b9e2c63e7face9fc2f818deec5896db2be873bf434e59255e842f357a7424ac299b6ea60
+"pdf2json@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "pdf2json@npm:3.2.2"
+  bin:
+    pdf2json: bin/pdf2json.js
+  checksum: 10c0/1faa379457c363ae948f022842ffdcb3feeaa474b65eb87ad687380034d10ca1c13c749f0de9da72097c61fc836d70e4bd72db7403300fb5b9a91c8084c726c9
   languageName: node
   linkType: hard
 
-"pdfjs-dist@npm:^5.4.149":
-  version: 5.4.149
-  resolution: "pdfjs-dist@npm:5.4.149"
+"pdfjs-dist@npm:^5.4.296":
+  version: 5.4.296
+  resolution: "pdfjs-dist@npm:5.4.296"
   dependencies:
-    "@napi-rs/canvas": "npm:^0.1.77"
+    "@napi-rs/canvas": "npm:^0.1.80"
   dependenciesMeta:
     "@napi-rs/canvas":
       optional: true
-  checksum: 10c0/dad7b494ee8e43121cf6f88f16fb3a94307e81fa9768d049ceec877a22a55ad8d3b742b8120ac5c2b8be1817e462eaabb73da71cb0b063bbc7ded6cde971ddf8
+  checksum: 10c0/a9e438f12771963f7c29934b4d5e58d508fa43954e4e4cbf951b040c6c89891d048e3d9d3799ed9ec6ceade677628a25f88062b300c5425777ce0b522e457532
   languageName: node
   linkType: hard
 
