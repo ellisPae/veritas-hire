@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import type { ResumeUploadState } from "@/types/resume";
 
 interface ResumeUploadProps {
@@ -8,7 +9,6 @@ interface ResumeUploadProps {
   onFileUpload: (file: File) => void;
   onFileError: (error: string) => void;
   onRemoveFile: () => void;
-  onAnalysisComplete?: (data: any) => void; // 👈 callback for API results
 }
 
 export default function ResumeUpload({
@@ -16,9 +16,9 @@ export default function ResumeUpload({
   onFileUpload,
   onFileError,
   onRemoveFile,
-  onAnalysisComplete,
 }: ResumeUploadProps) {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -39,10 +39,8 @@ export default function ResumeUpload({
       return;
     }
 
-    // ✅ Update UI state
     onFileUpload(file);
 
-    // ✅ Send file to API
     try {
       setLoading(true);
       const formData = new FormData();
@@ -53,14 +51,18 @@ export default function ResumeUpload({
         body: formData,
       });
 
-      if (!res.ok) throw new Error("Failed to analyze resume");
-
-      const data = await res.json();
-
-      // 👇 Call parent with API results
-      if (onAnalysisComplete) {
-        onAnalysisComplete(data);
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error("Server error: " + errText.slice(0, 100));
       }
+
+      const result = await res.json();
+
+      // ✅ Save parsed + analysis results for later use (optional)
+      sessionStorage.setItem("analysisResults", JSON.stringify(result));
+
+      // ✅ Redirect to Job Listing page (correct flow)
+      router.push("/job-listing");
     } catch (err: any) {
       onFileError(err.message || "Something went wrong");
     } finally {
@@ -76,7 +78,9 @@ export default function ResumeUpload({
             Uploaded: <span className="font-medium">{fileState.file.name}</span>
           </p>
           {loading ? (
-            <p className="text-sm text-blue-500">Analyzing resume...</p>
+            <p className="text-sm text-blue-500 animate-pulse">
+              Analyzing resume...
+            </p>
           ) : (
             <button
               onClick={onRemoveFile}
