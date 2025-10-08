@@ -15,6 +15,8 @@ export default function JobListingForm({ onSubmit }: JobListingFormProps) {
     description: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -22,10 +24,13 @@ export default function JobListingForm({ onSubmit }: JobListingFormProps) {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.title || !form.company || !form.description) return; // required
-    onSubmit(form);
+    if (!form.title || !form.company || !form.description) return;
+
+    setLoading(true);
+    await onSubmit(form);
+    setLoading(false);
   };
 
   return (
@@ -121,11 +126,12 @@ export default function JobListingForm({ onSubmit }: JobListingFormProps) {
       {/* Submit Button */}
       <button
         type="submit"
+        disabled={loading}
         className="w-full py-3 px-6 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 
-                   text-white font-semibold shadow hover:shadow-lg hover:scale-[1.02] 
-                   transform transition"
+             text-white font-semibold shadow hover:shadow-lg hover:scale-[1.02] 
+             transform transition disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Get Insights
+        {loading ? "Analyzing Job Listing..." : "Get Insights"}
       </button>
     </form>
   );

@@ -58,16 +58,15 @@ export async function POST(req: Request) {
 
     // 🧠 --- Send to OpenAI for analysis ---
     const prompt = `
-    Analyze the following resume and return a JSON object with:
-    {
-      "overallScore": number,
-      "strengths": string[],
-      "weaknesses": string[],
-      "summary": string
-    }
-
-    Resume:
-    ${cleanedText.substring(0, 2500)}
+      Analyze the following resume and return a JSON object with:
+      {
+        "overallScore": number,
+        "strengths": string[],
+        "weaknesses": string[],
+        "summary": string
+      }
+      Resume:
+      ${cleanedText.substring(0, 2500)}
     `;
 
     const completion = await openai.chat.completions.create({

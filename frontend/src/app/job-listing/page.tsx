@@ -9,10 +9,33 @@ import type { JobDetails } from "@/types/job";
 export default function JobListingPage() {
   const router = useRouter();
 
-  const handleSubmit = (job: JobDetails) => {
-    // MVP: persist in localStorage
-    localStorage.setItem("jobListing", JSON.stringify(job));
-    router.push("/results");
+  const handleSubmit = async (job: JobDetails) => {
+    try {
+      // Show loading state (optional improvement)
+      const res = await fetch("/api/job-analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jobTitle: job.title,
+          company: job.company,
+          description: job.description,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to analyze job listing");
+
+      const result = await res.json();
+
+      // ✅ Store job data + AI analysis so Results page can use it
+      sessionStorage.setItem("jobAnalysis", JSON.stringify(result.analysis));
+      sessionStorage.setItem("jobListing", JSON.stringify(job));
+
+      // ✅ Redirect to results
+      router.push("/results");
+    } catch (err) {
+      console.error("Job listing submission failed:", err);
+      alert("Something went wrong while analyzing the job listing.");
+    }
   };
 
   return (
