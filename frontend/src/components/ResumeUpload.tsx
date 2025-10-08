@@ -46,7 +46,7 @@ export default function ResumeUpload({
       const formData = new FormData();
       formData.append("resume", file);
 
-      const res = await fetch("/api/analyze", {
+      const res = await fetch("/api/resume-analyze", {
         method: "POST",
         body: formData,
       });
@@ -78,9 +78,10 @@ export default function ResumeUpload({
             Uploaded: <span className="font-medium">{fileState.file.name}</span>
           </p>
           {loading ? (
-            <p className="text-sm text-blue-500 animate-pulse">
-              Analyzing resume...
-            </p>
+            <div className="flex flex-col items-center space-y-2">
+              <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-sm text-blue-500">Analyzing your resume...</p>
+            </div>
           ) : (
             <button
               onClick={onRemoveFile}
