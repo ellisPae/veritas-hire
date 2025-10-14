@@ -26,8 +26,9 @@ export async function POST(req: Request) {
         "softSkills": string[], // e.g. communication, teamwork, adaptability
         "summary": string // concise, natural-language summary for UI display
       }
+
       Job Title: ${jobTitle}
-      Company: ${company || "N/A"}
+      Company: ${company || "Not specified"}
       Description:
       ${description}
     `;
@@ -45,9 +46,26 @@ export async function POST(req: Request) {
     });
 
     const raw = completion.choices[0].message?.content ?? "{}";
-    const analysis = JSON.parse(raw);
+
+    // 🧹 Clean up markdown-style code block wrappers (```json ... ```)
+    const cleaned = raw
+      .replace(/```json/i, "")
+      .replace(/```/g, "")
+      .trim();
+
+    let analysis;
+    try {
+      analysis = JSON.parse(cleaned);
+    } catch (err) {
+      console.error("❌ Failed to parse JSON from OpenAI:", err);
+      analysis = {
+        summary: "Failed to parse AI response",
+        rawOutput: cleaned,
+      };
+    }
 
     console.log("✅ Job listing analyzed successfully");
+    console.log("🧠 Cleaned AI Output:", cleaned.substring(0, 200));
 
     return NextResponse.json({
       success: true,
@@ -56,7 +74,10 @@ export async function POST(req: Request) {
   } catch (err: any) {
     console.error("💥 Error in /api/job-analyze:", err);
     return NextResponse.json(
-      { error: "Failed to analyze job listing", details: err.message },
+      {
+        error: "Failed to analyze job listing",
+        details: err?.message || "Unknown error occurred",
+      },
       { status: 500 }
     );
   }

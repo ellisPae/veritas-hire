@@ -124,15 +124,34 @@ export default function JobListingForm({ onSubmit }: JobListingFormProps) {
       </div>
 
       {/* Submit Button */}
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full py-3 px-6 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 
-             text-white font-semibold shadow hover:shadow-lg hover:scale-[1.02] 
-             transform transition disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {loading ? "Analyzing Job Listing..." : "Get Insights"}
-      </button>
+      {loading ? (
+        <div className="flex justify-center items-center py-6">
+          <span className="inline-flex space-x-2">
+            <span
+              className="inline-block w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"
+              style={{ animationDelay: "0s" }}
+            ></span>
+            <span
+              className="inline-block w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"
+              style={{ animationDelay: "0.2s" }}
+            ></span>
+            <span
+              className="inline-block w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse"
+              style={{ animationDelay: "0.4s" }}
+            ></span>
+          </span>
+        </div>
+      ) : (
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full py-3 px-6 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 
+               text-white font-semibold shadow hover:shadow-lg hover:scale-[1.02] 
+               transform transition disabled:opacity-60 disabled:cursor-not-allowed flex justify-center items-center"
+        >
+          Get Insights
+        </button>
+      )}
     </form>
   );
 }

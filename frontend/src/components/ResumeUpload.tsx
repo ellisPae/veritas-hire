@@ -78,9 +78,21 @@ export default function ResumeUpload({
             Uploaded: <span className="font-medium">{fileState.file.name}</span>
           </p>
           {loading ? (
-            <div className="flex flex-col items-center space-y-2">
-              <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-              <p className="text-sm text-blue-500">Analyzing your resume...</p>
+            <div className="flex justify-center items-center min-h-[2.5rem]">
+              <span className="inline-flex space-x-2">
+                <span
+                  className="inline-block w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"
+                  style={{ animationDelay: "0s" }}
+                ></span>
+                <span
+                  className="inline-block w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"
+                  style={{ animationDelay: "0.2s" }}
+                ></span>
+                <span
+                  className="inline-block w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse"
+                  style={{ animationDelay: "0.4s" }}
+                ></span>
+              </span>
             </div>
           ) : (
             <button
