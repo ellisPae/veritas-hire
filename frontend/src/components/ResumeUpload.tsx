@@ -58,10 +58,10 @@ export default function ResumeUpload({
 
       const result = await res.json();
 
-      // ✅ Save parsed + analysis results for later use (optional)
-      sessionStorage.setItem("analysisResults", JSON.stringify(result));
+      // ✅ Save parsed resume text for final analysis
+      sessionStorage.setItem("resumeText", result.resumeText);
 
-      // ✅ Redirect to Job Listing page (correct flow)
+      // ✅ Redirect to Job Listing page (next step in flow)
       router.push("/job-listing");
     } catch (err: any) {
       onFileError(err.message || "Something went wrong");

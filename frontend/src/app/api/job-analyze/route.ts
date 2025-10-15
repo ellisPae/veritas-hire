@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { openai } from "@/lib/openai";
 
 export const runtime = "nodejs";
 
@@ -16,66 +15,27 @@ export async function POST(req: Request) {
       );
     }
 
-    const prompt = `
-      You are a hiring analyst. Analyze the following job listing and summarize key details in JSON format:
-      {
-        "roleSummary": string, // short 1-2 sentence summary of the role
-        "keySkills": string[], // top skills required
-        "experienceLevel": string, // e.g. Entry, Mid, Senior
-        "focusAreas": string[], // areas of work or focus
-        "softSkills": string[], // e.g. communication, teamwork, adaptability
-        "summary": string // concise, natural-language summary for UI display
-      }
+    // ✅ Clean and normalize job data
+    const cleanedDescription = description.replace(/\s+/g, " ").trim();
 
-      Job Title: ${jobTitle}
-      Company: ${company || "Not specified"}
-      Description:
-      ${description}
-    `;
+    // ✅ Log preview for debugging
+    console.log("✅ Job listing parsed successfully");
+    console.log("🧠 Preview:", cleanedDescription.substring(0, 200));
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content: "You are a precise and structured job listing analyst.",
-        },
-        { role: "user", content: prompt },
-      ],
-      temperature: 0.7,
-    });
-
-    const raw = completion.choices[0].message?.content ?? "{}";
-
-    // 🧹 Clean up markdown-style code block wrappers (```json ... ```)
-    const cleaned = raw
-      .replace(/```json/i, "")
-      .replace(/```/g, "")
-      .trim();
-
-    let analysis;
-    try {
-      analysis = JSON.parse(cleaned);
-    } catch (err) {
-      console.error("❌ Failed to parse JSON from OpenAI:", err);
-      analysis = {
-        summary: "Failed to parse AI response",
-        rawOutput: cleaned,
-      };
-    }
-
-    console.log("✅ Job listing analyzed successfully");
-    console.log("🧠 Cleaned AI Output:", cleaned.substring(0, 200));
-
+    // ✅ Return clean data for use in /api/final-analyze
     return NextResponse.json({
       success: true,
-      analysis,
+      jobData: {
+        title: jobTitle,
+        company: company || "Not specified",
+        description: cleanedDescription,
+      },
     });
   } catch (err: any) {
     console.error("💥 Error in /api/job-analyze:", err);
     return NextResponse.json(
       {
-        error: "Failed to analyze job listing",
+        error: "Failed to process job listing",
         details: err?.message || "Unknown error occurred",
       },
       { status: 500 }
