@@ -120,7 +120,7 @@ export default function AnalysisResults({
         {/* Recommendations */}
         <motion.div
           variants={itemVariants}
-          className="w-full max-w-6xl bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 rounded-xl shadow-md p-8"
+          className="w-full max-w-6xl bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 rounded-xl shadow-md p-8 mb-8"
         >
           <div className="flex items-center gap-2 mb-4">
             <Lightbulb className="text-yellow-500" />
@@ -139,7 +139,7 @@ export default function AnalysisResults({
         <motion.div
           variants={itemVariants}
           className="relative w-full max-w-6xl bg-white/90 dark:bg-gray-900/90 
-             backdrop-blur-md rounded-2xl shadow-md p-12 mt-16"
+             backdrop-blur-md rounded-2xl shadow-md p-12 mt-8"
         >
           <h3 className="font-bold text-gray-900 dark:text-white text-2xl mb-6">
             Summary
