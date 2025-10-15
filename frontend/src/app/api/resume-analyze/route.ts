@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import mammoth from "mammoth";
 import PDFParser from "pdf2json";
-import { openai } from "@/lib/openai";
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
-    console.log("📩 /api/analyze hit");
+    console.log("📩 /api/resume-analyze hit");
 
     const formData = await req.formData();
     const file = formData.get("resume") as File | null;
@@ -56,59 +55,16 @@ export async function POST(req: Request) {
     const cleanedText = text.replace(/\s+/g, " ").trim();
     console.log("✅ Extracted text preview:", cleanedText.substring(0, 200));
 
-    // 🧠 --- Send to OpenAI for analysis ---
-    const prompt = `
-      Analyze the following resume and return a JSON object with:
-      {
-        "overallScore": number,
-        "strengths": string[],
-        "weaknesses": string[],
-        "summary": string
-      }
-      Resume:
-      ${cleanedText.substring(0, 2500)}
-    `;
-
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are a resume analyst. Respond only with valid JSON (no markdown, no code fences).",
-        },
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-      temperature: 0.3,
-    });
-
-    let raw = completion.choices[0].message?.content ?? "{}";
-
-    // 🧹 Remove markdown code fences if present
-    raw = raw.replace(/```json|```/g, "").trim();
-
-    let analysis;
-    try {
-      analysis = JSON.parse(raw);
-    } catch (err) {
-      console.error("⚠️ Failed to parse model response:", raw);
-      throw new Error("Invalid JSON returned by OpenAI");
-    }
-
-    console.log("✅ Analysis completed successfully");
+    // ✅ Only return parsed resume text, no OpenAI call here
     return NextResponse.json({
       success: true,
-      rawText: cleanedText.substring(0, 1000),
-      analysis,
+      resumeText: cleanedText,
     });
   } catch (err: any) {
-    console.error("💥 Error in /api/analyze:", err);
+    console.error("💥 Error in /api/resume-analyze:", err);
     return NextResponse.json(
       {
-        error: "Failed to analyze resume",
+        error: "Failed to process resume",
         details: err.message || String(err),
       },
       { status: 500 }

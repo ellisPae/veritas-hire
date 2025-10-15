@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import type { JobDetails } from "@/types/job";
 
 interface JobListingFormProps {
-  onSubmit: (job: JobDetails) => void;
+  onSubmit?: (job: JobDetails) => void;
 }
 
 export default function JobListingForm({ onSubmit }: JobListingFormProps) {
@@ -16,6 +17,7 @@ export default function JobListingForm({ onSubmit }: JobListingFormProps) {
   });
 
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,13 +30,24 @@ export default function JobListingForm({ onSubmit }: JobListingFormProps) {
     e.preventDefault();
     if (!form.title || !form.company || !form.description) return;
 
-    setLoading(true);
-    await onSubmit(form);
-    setLoading(false);
+    try {
+      setLoading(true);
+
+      // ✅ Store job details locally for final analysis
+      sessionStorage.setItem("jobListing", JSON.stringify(form));
+
+      // ✅ Redirect to /results (final step — combined analysis)
+      router.push("/results");
+    } catch (err) {
+      console.error("❌ Failed to process job listing:", err);
+      alert("Something went wrong while saving job details.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
       {/* Job Title */}
       <div>
         <label
