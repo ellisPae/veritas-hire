@@ -13,30 +13,42 @@ export default function ResumeUploadPage() {
     error: null,
   });
 
+  const [uploadComplete, setUploadComplete] = useState(false);
+
   const router = useRouter();
 
   const handleFileUpload = (file: File) => {
     setFileState({ file, isUploaded: true, error: null });
+    setUploadComplete(false);
   };
 
   const handleFileError = (error: string) => {
     setFileState({ file: null, isUploaded: false, error });
+    setUploadComplete(false);
   };
 
   const handleRemoveFile = () => {
     setFileState({ file: null, isUploaded: false, error: null });
+    setUploadComplete(false);
+    try {
+      sessionStorage.removeItem("analysisResults");
+    } catch {}
   };
 
-  // ✅ After the API finishes parsing, go to Job Listing
+  // Store parsed resume text in sessionStorage and show Next button
   const handleAnalysisComplete = (data: any) => {
-    // optional: stash for later (e.g., results page)
     try {
       sessionStorage.setItem("analysisResults", JSON.stringify(data));
     } catch {}
+    setUploadComplete(true);
+  };
+
+  // Navigate to Job Listing page
+  const handleNext = () => {
     router.push("/job-listing");
   };
 
-  // ✅ Skip also goes to Job Listing
+  // Skip also goes to Job Listing
   const handleSkip = () => {
     router.push("/job-listing");
   };
@@ -86,9 +98,31 @@ export default function ResumeUploadPage() {
             onFileUpload={handleFileUpload}
             onFileError={handleFileError}
             onRemoveFile={handleRemoveFile}
-            onAnalysisComplete={handleAnalysisComplete} // 👈 navigate on success
+            onAnalysisComplete={handleAnalysisComplete} // store data and show Next button
           />
         </motion.div>
+
+        {uploadComplete && (
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="flex flex-col items-center space-y-4 w-full"
+          >
+            <button
+              onClick={handleNext}
+              className="w-full py-3 px-6 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:scale-[1.02] transition transform"
+            >
+              Next
+            </button>
+            <button
+              onClick={handleRemoveFile}
+              className="w-full px-6 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            >
+              Remove Resume
+            </button>
+          </motion.div>
+        )}
       </motion.div>
 
       {/* Skip button */}
