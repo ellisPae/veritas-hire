@@ -20,22 +20,37 @@ export async function POST(req: Request) {
 
     // ✅ Handle PDF
     if (file.type.includes("pdf") || file.name.endsWith(".pdf")) {
-      console.log("📄 Parsing PDF...");
+      console.log("📄 Parsing PDF with pdf2json...");
       text = await new Promise<string>((resolve, reject) => {
         const pdfParser = new PDFParser();
-        pdfParser.on("pdfParser_dataError", (errData: any) =>
-          reject(errData.parserError)
-        );
+
+        pdfParser.on("pdfParser_dataError", (errData: any) => {
+          console.error("❌ PDF parsing error:", errData.parserError);
+          reject(errData.parserError);
+        });
+
         pdfParser.on("pdfParser_dataReady", (pdfData: any) => {
           const content = pdfData.Pages.map((page: any) =>
-            page.Texts.map((t: any) =>
-              decodeURIComponent(t.R.map((r: any) => r.T).join(" "))
-            ).join(" ")
+            page.Texts.map((t: any) => {
+              try {
+                return decodeURIComponent(t.R.map((r: any) => r.T).join(""));
+              } catch {
+                return t.R.map((r: any) => r.T).join("");
+              }
+            }).join(" ")
           ).join("\n");
+
           resolve(content);
         });
+
         pdfParser.parseBuffer(buffer);
       });
+
+      // ✅ Clean and normalize extracted text
+      text = text
+        .replace(/[^\S\r\n]+/g, " ")
+        .replace(/\n{2,}/g, "\n")
+        .trim();
     }
 
     // ✅ Handle DOCX
@@ -52,13 +67,10 @@ export async function POST(req: Request) {
 
     if (!text.trim()) throw new Error("No text extracted");
 
-    const cleanedText = text.replace(/\s+/g, " ").trim();
-    console.log("✅ Extracted text preview:", cleanedText.substring(0, 200));
-
-    // ✅ Only return parsed resume text, no OpenAI call here
+    console.log("✅ Extracted text length:", text.length);
     return NextResponse.json({
       success: true,
-      resumeText: cleanedText,
+      resumeText: text,
     });
   } catch (err: any) {
     console.error("💥 Error in /api/resume-analyze:", err);

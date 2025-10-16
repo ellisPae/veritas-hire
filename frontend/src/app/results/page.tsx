@@ -1,118 +1,100 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import AnalysisResults from "@/components/AnalysisResults";
-import type { AnalysisResultsProps } from "@/types/analysis";
 
 export default function ResultsPage() {
-  const [data, setData] = useState<AnalysisResultsProps | null>(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [isDemoMode, setIsDemoMode] = useState(false);
+
   useEffect(() => {
-    const runFinalAnalysis = async () => {
+    const runAnalysis = async () => {
       try {
         const storedResume = sessionStorage.getItem("resumeText");
         const storedJob = sessionStorage.getItem("jobListing");
+        const isDemoResume = sessionStorage.getItem("isDemoResume") === "true";
+        const isDemoJob = sessionStorage.getItem("isDemoJob") === "true";
+
+        const demoMode = isDemoResume && isDemoJob;
+        setIsDemoMode(demoMode);
+
+        console.log("🧩 Demo flags:", { isDemoResume, isDemoJob });
 
         if (!storedResume || !storedJob) {
           setError("Missing resume or job listing data. Please start again.");
-          setLoading(false);
           return;
         }
 
-        let resumeText;
-        try {
-          resumeText = JSON.parse(storedResume);
-        } catch {
-          resumeText = storedResume;
+        if (demoMode) {
+          console.log("✅ Using demo results (no OpenAI call)");
+          const demoRes = await fetch("/demo/demo-results.json");
+          const demoData = await demoRes.json();
+          setData(demoData);
+        } else {
+          console.log("🚀 Running OpenAI analysis...");
+          const res = await fetch("/api/final-analyze", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              resumeText: storedResume,
+              jobListing: JSON.parse(storedJob),
+            }),
+          });
+
+          if (!res.ok) throw new Error("Failed to generate analysis");
+
+          const result = await res.json();
+          setData(result.analysis);
         }
-        const jobListing = JSON.parse(storedJob);
-
-        const res = await fetch("/api/final-analyze", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ resumeText, jobListing }),
-        });
-
-        if (!res.ok) throw new Error("Failed to generate analysis");
-        const result = await res.json();
-        setData(result.analysis);
       } catch (err: any) {
+        console.error(err);
         setError(err.message || "Something went wrong.");
       } finally {
         setLoading(false);
+        sessionStorage.removeItem("isDemoResume");
+        sessionStorage.removeItem("isDemoJob");
       }
     };
 
-    runFinalAnalysis();
+    runAnalysis();
   }, []);
 
-  // 🌀 Modern loading animation
-  if (loading) {
+  if (loading)
     return (
-      <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 text-gray-600 dark:text-gray-300">
-        <div className="text-center space-y-4">
-          <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
-            Analyzing your profile
-          </h2>
-          <div className="flex justify-center items-center space-x-2 mt-4">
-            <span
-              className="inline-block w-3 h-3 rounded-full bg-blue-500 animate-pulse"
-              style={{ animationDelay: "0s" }}
-            ></span>
-            <span
-              className="inline-block w-3 h-3 rounded-full bg-indigo-500 animate-pulse"
-              style={{ animationDelay: "0.2s" }}
-            ></span>
-            <span
-              className="inline-block w-3 h-3 rounded-full bg-purple-500 animate-pulse"
-              style={{ animationDelay: "0.4s" }}
-            ></span>
-          </div>
-        </div>
-      </main>
+      <div className="flex justify-center items-center h-screen text-gray-600 dark:text-gray-300">
+        Analyzing your results...
+      </div>
     );
-  }
 
-  // ❌ Error message
-  if (error) {
+  if (error)
     return (
-      <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-red-500 text-center text-lg font-medium"
-        >
-          {error}
-        </motion.div>
-      </main>
+      <div className="flex flex-col justify-center items-center h-screen text-red-600 dark:text-red-400">
+        {error}
+      </div>
     );
-  }
 
-  // ⚠️ No data fallback
-  if (!data) {
+  if (!data)
     return (
-      <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 text-gray-600 dark:text-gray-300">
-        No results found.
-      </main>
+      <div className="flex justify-center items-center h-screen text-gray-500">
+        No data available.
+      </div>
     );
-  }
 
-  // ✅ Animated results fade-in
   return (
-    <AnimatePresence>
-      <motion.div
-        key="results"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
+    <main className="relative min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
+      {isDemoMode && (
+        <div className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-2 text-sm font-medium shadow-md z-50 transition-opacity duration-500 opacity-100">
+          Demo Mode Active — Showing Pre-Generated Results
+        </div>
+      )}
+
+      {/* Results content */}
+      <div className="relative z-10 pt-12">
         <AnalysisResults {...data} />
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </main>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type { JobDetails } from "@/types/job";
 
@@ -18,6 +18,15 @@ export default function JobListingForm({ onSubmit }: JobListingFormProps) {
 
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const handleDemoEvent = (e: CustomEvent) => {
+      if (e.detail) setForm(e.detail);
+    };
+    window.addEventListener("useDemoJobListing", handleDemoEvent);
+    return () =>
+      window.removeEventListener("useDemoJobListing", handleDemoEvent);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -47,7 +56,7 @@ export default function JobListingForm({ onSubmit }: JobListingFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
+    <form onSubmit={handleSubmit} className="space-y-7 max-w-xl mx-auto">
       {/* Job Title */}
       <div>
         <label
@@ -135,6 +144,21 @@ export default function JobListingForm({ onSubmit }: JobListingFormProps) {
                      dark:focus:ring-blue-700 transition resize-none"
         />
       </div>
+
+      {/* Clear Button */}
+      <button
+        type="button"
+        onClick={() => {
+          setForm({ title: "", company: "", location: "", description: "" });
+          try {
+            sessionStorage.removeItem("jobListing");
+            sessionStorage.removeItem("isDemoJob");
+          } catch {}
+        }}
+        className="w-full py-3 px-6 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition mb-3"
+      >
+        Clear
+      </button>
 
       {/* Submit Button */}
       {loading ? (

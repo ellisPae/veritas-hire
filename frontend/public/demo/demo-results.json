@@ -1,0 +1,35 @@
+{
+  "overallScore": 82,
+  "skillsMatch": 86,
+  "experienceMatch": 78,
+  "growthPotential": 84,
+  "strengths": [
+    "Strong proficiency in React.js, TypeScript, and component-driven UI architecture",
+    "Hands-on experience with CI/CD workflows, automated testing, and agile collaboration",
+    "Effective communicator with a history of delivering cross-functional projects on time",
+    "Proven adaptability to new frameworks and fast-changing product requirements"
+  ],
+  "weaknesses": [
+    "Limited production experience deploying and managing applications in AWS",
+    "Minimal exposure to container orchestration tools such as Kubernetes",
+    "Backend development experience is less emphasized compared to frontend expertise"
+  ],
+  "recommendations": [
+    "Take on projects that involve Docker and AWS to demonstrate full deployment fluency",
+    "Contribute to backend or DevOps initiatives to round out technical depth",
+    "Highlight measurable results in project outcomes (e.g., performance gains, user engagement)",
+    "Deepen knowledge of scalable API architecture and distributed systems patterns"
+  ],
+  "insights": {
+    "skills": {
+      "narrative": "Avery’s technical skill set is firmly grounded in modern frontend engineering. Proficiency in React.js, TypeScript, and UI architecture indicates readiness for complex interface development and cross-functional collaboration. The code style emphasizes modularity, accessibility, and maintainability, which are highly desirable traits for scaling applications. While strong in frontend execution, the next step in Avery’s growth lies in acquiring more hands-on experience with backend scalability and cloud-native workflows.",
+      "keywordsMatch": {
+        "matched": ["React.js", "TypeScript", "Next.js", "CI/CD", "Agile"],
+        "missing": ["AWS", "Docker", "Kubernetes", "GraphQL"]
+      }
+    },
+    "experience": "Avery’s professional experience demonstrates reliable delivery within agile environments and an ability to adapt quickly to new challenges. There’s evidence of consistent collaboration with design and product teams, leading to polished user-facing applications. However, while Avery has contributed meaningfully to frontend-heavy projects, direct experience with backend infrastructure, deployment automation, and large-scale distributed systems remains limited. Strengthening these areas will help transition into higher-impact engineering roles.",
+    "growth": "Avery exhibits a strong trajectory for growth, showing curiosity, initiative, and openness to expanding skill boundaries. Focusing the next phase on backend and cloud development will help achieve a balanced full-stack profile. Hands-on exposure to AWS, containerization, and database optimization would increase technical versatility. Documenting these new learnings through personal projects, open-source contributions, or technical writing could amplify Avery’s professional presence."
+  },
+  "summary": "Avery Park’s profile showcases a robust technical foundation, with particular strength in modern frontend development using React and TypeScript. Avery demonstrates a consistent ability to deliver high-quality, maintainable code, and excels in collaborative environments where cross-functional teamwork and agile methodologies are key. The emphasis on modular UI architecture and attention to accessibility further reinforce Avery’s readiness to tackle complex, user-facing challenges at scale.\n\nBeyond frontend expertise, Avery’s proficiency with CI/CD workflows and automated testing highlights a commitment to engineering best practices and product reliability. These skills are complemented by a proven adaptability to evolving frameworks and project requirements, positioning Avery as a valuable contributor in dynamic software teams.\n\nWhile Avery’s primary experience centers on frontend and UI-centric roles, there is clear growth potential in expanding backend and infrastructure knowledge. Gaining hands-on exposure to cloud platforms such as AWS, as well as containerization and orchestration technologies like Docker and Kubernetes, will be crucial for achieving a truly full-stack profile. This technical breadth will enable Avery to contribute more holistically to end-to-end product development and deployment.\n\nLooking ahead, Avery is well-poised for accelerated professional growth. Curiosity, initiative, and an openness to new domains are evident, suggesting strong potential to master additional layers of the stack. Pursuing backend, DevOps, and distributed systems projects—whether through work assignments, open-source contributions, or technical learning—will further enhance Avery’s versatility and impact.\n\nOverall, Avery Park emerges as an adaptable and ambitious developer with a solid technical core and a trajectory toward full-stack mastery. With continued focus on broadening backend and cloud competencies, Avery is likely to become a key engineering asset capable of driving innovation across the software lifecycle."
+}
