@@ -2279,7 +2279,7 @@ __metadata:
     mammoth: "npm:^1.11.0"
     next: "npm:^15.5.4"
     openai: "npm:^6.2.0"
-    pdf2json: "npm:^3.2.2"
+    pdf2json: "npm:^4.0.0"
     pdfjs-dist: "npm:^5.4.296"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
@@ -3487,12 +3487,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pdf2json@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "pdf2json@npm:3.2.2"
+"pdf2json@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "pdf2json@npm:4.0.0"
   bin:
     pdf2json: bin/pdf2json.js
-  checksum: 10c0/1faa379457c363ae948f022842ffdcb3feeaa474b65eb87ad687380034d10ca1c13c749f0de9da72097c61fc836d70e4bd72db7403300fb5b9a91c8084c726c9
+  checksum: 10c0/8164203cbcf17ee832cacb2e87349bc49f6b9f157317cbd084924602ef5a4d58864b4d846ffc82bfe265d6638f927741a3eb36f5ebe24cdee97c93ad55e59807
   languageName: node
   linkType: hard
 

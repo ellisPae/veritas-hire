@@ -155,9 +155,12 @@ export default function Home() {
           <>
             <motion.h1
               key="title"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: -30 }}
-              transition={titleTransition}
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1.8,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
               className="text-5xl sm:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4"
             >
               Veritas Hire

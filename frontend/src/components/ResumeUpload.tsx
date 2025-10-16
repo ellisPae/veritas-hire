@@ -62,9 +62,11 @@ export default function ResumeUpload({
 
       // ✅ Save parsed resume text for final analysis
       sessionStorage.setItem("resumeText", result.resumeText);
-
-      // ✅ Mark upload as complete to show Next button
-      setUploadComplete(true);
+      setUploadComplete(true); // ✅ Mark upload as complete to show Next + Remove buttons
+      if (typeof window !== "undefined") {
+        const event = new CustomEvent("resumeUploaded");
+        window.dispatchEvent(event);
+      }
     } catch (err: any) {
       onFileError(err.message || "Something went wrong");
     } finally {
@@ -73,7 +75,12 @@ export default function ResumeUpload({
   };
 
   const handleRemoveFile = () => {
-    sessionStorage.removeItem("resumeText");
+    try {
+      sessionStorage.removeItem("resumeText");
+      sessionStorage.removeItem("analysisResults");
+    } catch (err) {
+      console.error("Error clearing resume data:", err);
+    }
     onRemoveFile();
     setUploadComplete(false);
   };
@@ -105,20 +112,7 @@ export default function ResumeUpload({
           ) : (
             <>
               <div className="flex flex-col items-center space-y-4 w-full">
-                <button
-                  onClick={handleRemoveFile}
-                  className="px-4 py-2 text-sm rounded-full bg-red-100 text-red-600 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-300 dark:hover:bg-red-900/50 transition"
-                >
-                  Remove Resume
-                </button>
-                {uploadComplete && (
-                  <button
-                    onClick={() => router.push("/job-listing")}
-                    className="w-full py-3 px-6 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:scale-[1.02] transition transform"
-                  >
-                    Next
-                  </button>
-                )}
+                {/* Next button removed; now handled in resume-upload/page.tsx */}
               </div>
             </>
           )}
