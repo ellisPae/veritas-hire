@@ -38,10 +38,10 @@ export default function Home() {
   useEffect(() => {
     let timers: NodeJS.Timeout[] = [];
 
-    timers.push(setTimeout(() => setStep(1), 1500));
-    timers.push(setTimeout(() => setStep(2), 2500));
-    timers.push(setTimeout(() => setStep(3), 6000));
-    timers.push(setTimeout(() => setStep(4), 8000));
+    timers.push(setTimeout(() => setStep(1), 2500));
+    timers.push(setTimeout(() => setStep(2), 4000));
+    timers.push(setTimeout(() => setStep(3), 9000));
+    timers.push(setTimeout(() => setStep(4), 12000));
 
     return () => timers.forEach((t) => clearTimeout(t));
   }, []);
@@ -52,7 +52,7 @@ export default function Home() {
     if (step === 4) {
       buttonTimer = setTimeout(() => {
         setShowButton(true);
-      }, 3000);
+      }, 2000);
     } else {
       setShowButton(false);
     }
@@ -155,13 +155,14 @@ export default function Home() {
           <>
             <motion.h1
               key="title"
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{
-                duration: 1.8,
+                duration: 2,
                 ease: [0.25, 0.1, 0.25, 1],
               }}
-              className="text-5xl sm:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4"
+              className="text-5xl sm:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent -mt-4 mb-8"
             >
               Veritas Hire
             </motion.h1>
@@ -170,7 +171,11 @@ export default function Home() {
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 10 }}
-                  transition={{ duration: HOLD_DURATION, ease: EASE_CURVE }}
+                  transition={{
+                    delay: 0.5,
+                    duration: HOLD_DURATION,
+                    ease: EASE_CURVE,
+                  }}
                   className="absolute top-full mt-12"
                 >
                   <Link
