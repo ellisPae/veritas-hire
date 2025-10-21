@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import AnalysisResults from "@/components/AnalysisResults";
 import { useRouter } from "next/navigation";
+import AnalysisResults from "@/components/AnalysisResults";
+import AnalyzingLoader from "@/components/AnalyzingLoader";
 
 export default function ResultsPage() {
   const [data, setData] = useState<any>(null);
@@ -70,12 +71,7 @@ export default function ResultsPage() {
     runAnalysis();
   }, []);
 
-  if (loading)
-    return (
-      <div className="flex justify-center items-center h-screen text-gray-600 dark:text-gray-300">
-        Analyzing your results...
-      </div>
-    );
+  if (loading) return <AnalyzingLoader />;
 
   if (error)
     return (
