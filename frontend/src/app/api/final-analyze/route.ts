@@ -26,6 +26,7 @@ export async function POST(req: Request) {
       You are an experienced technical hiring manager and career analyst.
       Analyze and compare the candidate’s resume against the job listing below.
       Return your response **only** as a valid, well-structured JSON object in the following exact format:
+      Your "summary" field should be a cohesive narrative of 3–5 paragraphs that synthesizes technical strengths, growth areas, and overall trajectory — similar in tone and depth to a professional career review.
       {
         "overallScore": number,
         "skillsMatch": number,

@@ -194,9 +194,9 @@ const MatchCard: React.FC<{
   onClick: () => void;
 }> = ({ label, score, onClick }) => {
   const getTextColor = (value: number) => {
-    if (value >= 80) return "text-green-600"; // high score
-    if (value >= 60) return "text-yellow-600"; // medium score
-    return "text-red-600"; // low score
+    if (value >= 80) return "text-green-600";
+    if (value >= 60) return "text-amber-400";
+    return "text-red-600";
   };
 
   return (
@@ -232,7 +232,11 @@ function DetailCard({
   return (
     <motion.div
       variants={itemVariants}
-      className={`bg-${bg}-50 dark:bg-${bg}-900/20 rounded-2xl shadow-md p-6`}
+      className={`${
+        title === "Strengths"
+          ? "bg-green-100/70 dark:bg-green-900/30"
+          : "bg-red-100/70 dark:bg-red-900/30"
+      } rounded-2xl shadow-md p-6 backdrop-blur-sm border border-white/20`}
     >
       <div className="flex items-center gap-2 mb-3">
         {icon}
