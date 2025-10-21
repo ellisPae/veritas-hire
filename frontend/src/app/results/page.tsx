@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import AnalysisResults from "@/components/AnalysisResults";
+import { useRouter } from "next/navigation";
 
 export default function ResultsPage() {
   const [data, setData] = useState<any>(null);
@@ -9,6 +10,13 @@ export default function ResultsPage() {
   const [error, setError] = useState<string | null>(null);
 
   const [isDemoMode, setIsDemoMode] = useState(false);
+
+  const router = useRouter();
+
+  const handleReset = () => {
+    sessionStorage.clear();
+    router.push("/resume-upload");
+  };
 
   useEffect(() => {
     const runAnalysis = async () => {
@@ -86,13 +94,26 @@ export default function ResultsPage() {
   return (
     <main className="relative min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
       {isDemoMode && (
-        <div className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-2 text-sm font-medium shadow-md z-50 transition-opacity duration-500 opacity-100">
+        <div className="fixed top-0 left-0 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-2 text-sm font-medium shadow-md z-50">
           Demo Mode Active — Showing Pre-Generated Results
         </div>
       )}
 
+      <div
+        className={`absolute right-6 z-40 transition-all duration-300 ${
+          isDemoMode ? "top-14" : "top-4"
+        }`}
+      >
+        <button
+          onClick={handleReset}
+          className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-base shadow-md hover:opacity-90 transition-transform transform hover:scale-[1.02]"
+        >
+          Start Over
+        </button>
+      </div>
+
       {/* Results content */}
-      <div className="relative z-10 pt-12">
+      <div className="relative z-10 pt-16">
         <AnalysisResults {...data} />
       </div>
     </main>
