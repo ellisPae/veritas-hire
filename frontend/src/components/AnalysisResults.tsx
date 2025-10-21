@@ -25,7 +25,7 @@ const itemVariants = {
   },
 };
 
-export default function AnalysisResults({
+const AnalysisResults = ({
   overallScore,
   skillsMatch,
   experienceMatch,
@@ -35,7 +35,7 @@ export default function AnalysisResults({
   recommendations = [],
   summary,
   insights,
-}: AnalysisResultsProps) {
+}: AnalysisResultsProps) => {
   const [activeCard, setActiveCard] = useState<InsightType | null>(null);
 
   // close modal with Esc
@@ -185,7 +185,9 @@ export default function AnalysisResults({
       </AnimatePresence>
     </main>
   );
-}
+};
+
+export default AnalysisResults;
 
 /* Sub-components */
 const MatchCard: React.FC<{
@@ -218,7 +220,7 @@ const MatchCard: React.FC<{
   );
 };
 
-function DetailCard({
+const DetailCard = ({
   icon,
   title,
   items,
@@ -228,7 +230,7 @@ function DetailCard({
   title: string;
   items: string[];
   bg: string;
-}) {
+}) => {
   return (
     <motion.div
       variants={itemVariants}
@@ -249,4 +251,4 @@ function DetailCard({
       </ul>
     </motion.div>
   );
-}
+};

@@ -1,31 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { InsightType } from "@/types/analysis";
+import { InsightModalProps } from "@/types/analysis";
 
-interface KeywordsMatch {
-  matched: string[];
-  missing: string[];
-}
-
-interface InsightData {
-  narrative: string;
-  keywordsMatch?: KeywordsMatch;
-}
-
-interface InsightModalProps {
-  type: InsightType;
-  score: number;
-  insight: string | InsightData;
-  onClose: () => void;
-}
-
-export default function InsightModal({
-  type,
-  score,
-  insight,
-  onClose,
-}: InsightModalProps) {
+const InsightModal = ({ type, score, insight, onClose }: InsightModalProps) => {
   const renderNarrative = (text: string) => (
     <div className="space-y-4 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
       {text.split("\n\n").map((para, idx) => (
@@ -122,4 +100,6 @@ export default function InsightModal({
       </motion.div>
     </AnimatePresence>
   );
-}
+};
+
+export default InsightModal;

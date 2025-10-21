@@ -8,7 +8,7 @@ interface JobListingFormProps {
   onSubmit?: (job: JobDetails) => void;
 }
 
-export default function JobListingForm({ onSubmit }: JobListingFormProps) {
+const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
   const [form, setForm] = useState<JobDetails>({
     title: "",
     company: "",
@@ -191,4 +191,6 @@ export default function JobListingForm({ onSubmit }: JobListingFormProps) {
       )}
     </form>
   );
-}
+};
+
+export default JobListingForm;

@@ -7,7 +7,7 @@ import type { JobDetails } from "@/types/job";
 import demoJobListing from "@/../public/demo/demo-job-listing.json";
 import { useState } from "react";
 
-export default function JobListingPage() {
+const JobListingPage = () => {
   const router = useRouter();
 
   const [demoData, setDemoData] = useState<JobDetails | null>(null);
@@ -119,4 +119,6 @@ export default function JobListingPage() {
       </motion.div>
     </main>
   );
-}
+};
+
+export default JobListingPage;

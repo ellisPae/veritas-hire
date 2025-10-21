@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import AnalysisResults from "@/components/AnalysisResults";
 import AnalyzingLoader from "@/components/AnalyzingLoader";
 
-export default function ResultsPage() {
+const ResultsPage = () => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -114,4 +114,6 @@ export default function ResultsPage() {
       </div>
     </main>
   );
-}
+};
+
+export default ResultsPage;
