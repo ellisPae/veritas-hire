@@ -6,7 +6,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export async function POST(req: Request) {
+export const POST = async (req: Request) => {
   try {
     const {
       resumeText,
@@ -90,4 +90,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-}
+};

@@ -1,6 +1,6 @@
 import PDFParser from "pdf2json";
 
-export async function parsePDF(file: File): Promise<string> {
+export const parsePDF = async (file: File): Promise<string> => {
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
@@ -19,4 +19,4 @@ export async function parsePDF(file: File): Promise<string> {
     });
     pdfParser.parseBuffer(buffer);
   });
-}
+};

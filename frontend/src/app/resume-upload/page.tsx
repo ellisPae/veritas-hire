@@ -6,7 +6,7 @@ import ResumeUpload from "@/components/ResumeUpload";
 import { motion } from "framer-motion";
 import type { ResumeUploadState } from "@/types/resume";
 
-export default function ResumeUploadPage() {
+const ResumeUploadPage = () => {
   const [fileState, setFileState] = useState<ResumeUploadState>({
     file: null,
     isUploaded: false,
@@ -192,4 +192,6 @@ export default function ResumeUploadPage() {
       </motion.div>
     </main>
   );
-}
+};
+
+export default ResumeUploadPage;

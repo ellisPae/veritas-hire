@@ -11,12 +11,12 @@ interface ResumeUploadProps {
   onRemoveFile: () => void;
 }
 
-export default function ResumeUpload({
+const ResumeUpload = ({
   fileState,
   onFileUpload,
   onFileError,
   onRemoveFile,
-}: ResumeUploadProps) {
+}: ResumeUploadProps) => {
   const [loading, setLoading] = useState(false);
   const [uploadComplete, setUploadComplete] = useState(false);
   const router = useRouter();
@@ -137,4 +137,6 @@ export default function ResumeUpload({
       )}
     </div>
   );
-}
+};
+
+export default ResumeUpload;

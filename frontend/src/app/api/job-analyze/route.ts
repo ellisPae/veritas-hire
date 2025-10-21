@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
-export async function POST(req: Request) {
+export const POST = async (req: Request) => {
   try {
     console.log("📩 /api/job-analyze hit");
 
@@ -17,10 +17,6 @@ export async function POST(req: Request) {
 
     // ✅ Clean and normalize job data
     const cleanedDescription = description.replace(/\s+/g, " ").trim();
-
-    // ✅ Log preview for debugging
-    console.log("✅ Job listing parsed successfully");
-    console.log("🧠 Preview:", cleanedDescription.substring(0, 200));
 
     // ✅ Return clean data for use in /api/final-analyze
     return NextResponse.json({
@@ -41,4 +37,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-}
+};

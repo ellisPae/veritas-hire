@@ -1,13 +1,23 @@
+// ----------------------
+//  Insight Types
+// ----------------------
 export type InsightType = "skills" | "experience" | "growth";
 
+export interface KeywordsMatch {
+  matched: string[];
+  missing: string[];
+}
+
+export interface InsightData {
+  narrative: string;
+  keywordsMatch?: KeywordsMatch;
+}
+
+// ----------------------
+//  Analysis Results
+// ----------------------
 export interface AnalysisInsights {
-  skills: {
-    narrative: {};
-    keywordsMatch: {
-      matched: string[];
-      missing: string[];
-    };
-  };
+  skills: InsightData;
   experience: string;
   growth: string;
 }
@@ -22,4 +32,14 @@ export interface AnalysisResultsProps {
   recommendations?: string[];
   summary: string;
   insights: AnalysisInsights;
+}
+
+// ----------------------
+//  Modal Props
+// ----------------------
+export interface InsightModalProps {
+  type: InsightType;
+  score: number;
+  insight: string | InsightData;
+  onClose: () => void;
 }

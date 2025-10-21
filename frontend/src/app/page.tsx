@@ -29,7 +29,7 @@ const animateContentAnimation = {
 
 const titleTransition = fadeTransition;
 
-export default function Home() {
+const Home = () => {
   // State setup
   const [step, setStep] = useState(0);
   const [showButton, setShowButton] = useState(false);
@@ -192,4 +192,6 @@ export default function Home() {
       </motion.div>
     </main>
   );
-}
+};
+
+export default Home;

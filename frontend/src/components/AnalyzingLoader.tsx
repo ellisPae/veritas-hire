@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function AnalyzingLoader() {
+const AnalyzingLoader = () => {
   const colors = ["#8B5CF6", "#6366F1", "#3B82F6", "#60A5FA", "#A5B4FC"];
 
   // Base style shared by all dots
@@ -52,4 +52,6 @@ export default function AnalyzingLoader() {
       </div>
     </div>
   );
-}
+};
+
+export default AnalyzingLoader;

@@ -4,7 +4,7 @@ import PDFParser from "pdf2json";
 
 export const runtime = "nodejs";
 
-export async function POST(req: Request) {
+export const POST = async (req: Request) => {
   try {
     console.log("📩 /api/resume-analyze hit");
 
@@ -82,4 +82,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-}
+};
