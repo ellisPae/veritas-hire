@@ -3,6 +3,5 @@
   "buildCommand": "yarn build",
   "installCommand": "yarn install --production=true",
   "outputDirectory": "frontend/.next",
-  "framework": "nextjs",
-  "ignoreCommand": "echo 'Skipping Storybook build'"
+  "framework": "nextjs"
 }
