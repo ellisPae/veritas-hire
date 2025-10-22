@@ -83,19 +83,16 @@ const AnalysisResults = ({
           <MatchCard
             label="Skills Match"
             score={skillsMatch}
-            color="blue"
             onClick={() => setActiveCard("skills")}
           />
           <MatchCard
             label="Experience Match"
             score={experienceMatch}
-            color="purple"
             onClick={() => setActiveCard("experience")}
           />
           <MatchCard
             label="Growth Potential"
             score={growthPotential}
-            color="green"
             onClick={() => setActiveCard("growth")}
           />
         </motion.div>
