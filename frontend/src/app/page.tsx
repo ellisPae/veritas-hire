@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 // Animation timing constants
 const FADE_DURATION = 1.8;
 const HOLD_DURATION = 1.6;
-const EASE_CURVE = [0.4, 0, 0.6, 1];
+const EASE_CURVE: [number, number, number, number] = [0.4, 0, 0.6, 1];
 
 // Reusable transition objects
 const fadeTransition = {
