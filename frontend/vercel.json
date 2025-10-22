@@ -1,7 +1,15 @@
 {
   "version": 2,
-  "buildCommand": "yarn build",
-  "installCommand": "yarn install --production=true",
-  "outputDirectory": "frontend/.next",
-  "framework": "nextjs"
+  "builds": [
+    {
+      "src": "frontend/next.config.js",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
+  ]
 }
