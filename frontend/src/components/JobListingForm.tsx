@@ -21,12 +21,21 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    const handleDemoEvent = (e: CustomEvent) => {
-      if (e.detail) setForm(e.detail);
+    const handleDemoEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<any>;
+      if (customEvent.detail) setForm(customEvent.detail);
     };
-    window.addEventListener("useDemoJobListing", handleDemoEvent);
-    return () =>
-      window.removeEventListener("useDemoJobListing", handleDemoEvent);
+
+    window.addEventListener(
+      "useDemoJobListing",
+      handleDemoEvent as EventListener
+    );
+    return () => {
+      window.removeEventListener(
+        "useDemoJobListing",
+        handleDemoEvent as EventListener
+      );
+    };
   }, []);
 
   const handleChange = (
