@@ -16,12 +16,14 @@ const containerVariants = {
   },
 };
 
+const EASE_CURVE: [number, number, number, number] = [0.4, 0, 0.6, 1];
+
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: EASE_CURVE },
   },
 };
 
