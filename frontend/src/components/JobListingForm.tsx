@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import type { JobDetails } from "@/types/job";
 
 interface JobListingFormProps {
-  onSubmit?: (job: JobDetails) => void;
+  onSubmit: (job: JobDetails) => Promise<void>;
+  demoData?: JobDetails | null;
 }
 
 const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
