@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: true,
   output: "standalone",
-  experimental: {
-    appDir: true,
-  },
   distDir: ".next",
 };
 
