@@ -9,6 +9,7 @@ interface ResumeUploadProps {
   onFileUpload: (file: File) => void;
   onFileError: (error: string) => void;
   onRemoveFile: () => void;
+  onAnalysisComplete?: (data: any) => void;
 }
 
 const ResumeUpload = ({
