@@ -9,6 +9,8 @@
 
 An AI-powered resume analyzer that helps job seekers understand how well their resume matches a job description. The app provides a match score, keyword analysis, strengths, weaknesses, and transferable skills — giving candidates actionable feedback to improve their applications.
 
+🔗 **Live Demo:**
+[veritas-hire.vercel.app](https://veritas-hire.vercel.app/)
 
 
 ## 🚀 Tech Stack
@@ -20,33 +22,37 @@ An AI-powered resume analyzer that helps job seekers understand how well their r
 
 
 ## ✨ Features (MVP)
-- Upload a resume (PDF/DOCX)  
-- Paste a job description  
-- AI-generated analysis including:  
-  - Overall Match Score (%)  
-  - Keywords (matched & missing)  
-  - Strengths & Weaknesses  
-  - Transferable Skills  
-  - Intangibles  
+- Upload your resume (PDF/DOCX)
+- Paste a job description
+- Receive AI-generated analysis including:
+  - ✅ Overall Match Score (%)
+  - 🧠 Skills Match:
+    - 📝 Keyword insights (matched & missing)
+  - 💼 Experience Match
+  - 🪴 Growth Potential / Transferable Skills
+  - 💪 Strengths & Weaknesses
+  - 💬 Actionable recommendations
+  - 📚 Overall Summary
+
 
 
 
 ## 📂 Project Structure
 ```
-veritas_hire/
-frontend/   # Next.js app
-backend/    # Django app (coming soon)
+veritas-hire/
+├── frontend/   # Next.js app (deployed on Vercel)
+└── backend/    # Django app (coming soon)
 ```
 
 
 
 ## 🛠 Development Roadmap
-1. **Frontend Skeleton** → Resume upload + job description form (Next.js + Tailwind).  
-2. **Backend Setup** → Django REST API with `/analyze` endpoint (dummy JSON at first).  
-3. **Resume Parsing** → Extract text from PDF/DOCX using Python libraries.  
-4. **AI Integration** → Connect OpenAI API for analysis & scoring.  
-5. **Database** → Store resumes, job descriptions, and results (PostgreSQL).  
-6. **UI Polish** → Add progress indicators, keyword highlights, and history view.  
+1. **✅ Frontend Skeleton** → Resume upload & job description input (Next.js + Tailwind).
+2. **🧱 Backend Setup** → Django REST API with `/analyze` endpoint (mock data initially).
+3. **📄 Resume Parsing** → Extract text from PDF/DOCX via Python libraries.
+4. **🤖 AI Integration** → Connect OpenAI API for intelligent analysis & scoring.  
+5. **💾 Database** → Store resumes, job descriptions, and results in PostgreSQL.  
+6. **🎨 UI Polish** → Add progress indicators/animations, keyword highlights, and history view.  
 
 
 
@@ -75,22 +81,49 @@ python manage.py runserver
 Backend will run at: ```http://localhost:8000```
 
 
+## 📸 Screenshots
+**Landing Page:**
 
-## 📸 Screenshots (Coming Soon)
-UI previews of the resume upload form, match score dashboard, and keyword analysis.
+**Resume Upload Page:**
 
+**Job Listing Page:**
+
+**Results Page:**
+
+
+
+## 📊 Analytics & Recruiter Insights (Coming Soon)
+
+Veritas Hire is evolving beyond resume analysis — it’s becoming a **data-driven hiring intelligence tool**.
+
+### Planned Analytics Features
+- **Job-Level Insights** – Aggregate analysis data for each job posting to understand overall applicant quality.  
+- **Top Candidates Ranking** – Automatically identify the **top 10 prospects** based on AI-generated fit scores, keyword relevance, and transferable skills.  
+- **Visual Analytics Dashboard** – Interactive recruiter dashboard with charts showing score distributions, keyword trends, and average fit metrics per role.  
+- **Data Export & Collaboration** – Export candidate analytics (CSV/PDF) or share recruiter dashboards for team review.  
+
+### Technical Overview
+The analytics system will:
+- Store all applicant analyses linked to their job listings in the backend (Django + PostgreSQL).  
+- Use AI-driven scoring to rank applicants.  
+- Expose a `/jobs/:id/analytics` API endpoint for aggregated results and top candidate retrieval.  
+- Power a **Recruiter Dashboard** in Next.js featuring:  
+  - 📈 Fit score distribution charts  
+  - 🏆 Ranked candidate list  
+  - 🧠 Keyword heatmaps and trend summaries  
+
+This will enable recruiters to **quickly identify the most qualified candidates** and gain deeper insights into their applicant pools.
 
 
 ## 🧭 Future Enhancements
-	•	User authentication (save multiple resumes & analyses)
-	•	Resume rewriting suggestions (ATS optimization)
-	•	Cover letter analyzer & generator
-	•	Dashboard with analysis history
-	•	Recruiter mode (bulk resume/job description comparisons)
-
+  - 🔐 User authentication (save multiple resumes & analyses)
+  - ✍️ Resume rewriting suggestions (ATS optimization)
+  - 📨 Cover letter analyzer & generator
+  - 📊 Dashboard with analysis history
+  - 👔 Recruiter mode (bulk resume/job description comparisons)
 
 
 ## 📄 License
+
 This project is for personal learning and portfolio purposes.
-
-
+© 2025 Ellis Pae — All rights reserved.
