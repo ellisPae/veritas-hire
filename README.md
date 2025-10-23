@@ -83,12 +83,17 @@ Backend will run at: ```http://localhost:8000```
 
 ## 📸 Screenshots
 **Landing Page:**
+<img width="1727" height="960" alt="Screenshot 2025-10-23 at 12 48 12 PM" src="https://github.com/user-attachments/assets/2c72ee14-4370-4c44-a12b-7e40b7852e2a" />
 
 **Resume Upload Page:**
+<img width="1728" height="956" alt="Screenshot 2025-10-23 at 12 46 18 PM" src="https://github.com/user-attachments/assets/63eaa882-5077-4b2b-8b68-f9c545018044" />
 
 **Job Listing Page:**
+<img width="1728" height="958" alt="Screenshot 2025-10-23 at 12 46 32 PM" src="https://github.com/user-attachments/assets/e47af1d9-50ed-4d7b-8be8-afaa4e0797d0" />
 
 **Results Page:**
+<img width="1728" height="957" alt="Screenshot 2025-10-23 at 12 45 55 PM" src="https://github.com/user-attachments/assets/452ebe0c-ad5a-47a5-9716-82bf88589123" />
+<img width="1727" height="957" alt="Screenshot 2025-10-23 at 12 46 09 PM" src="https://github.com/user-attachments/assets/4af1afd4-c9ea-4301-992a-326ee6de8abd" />
 
 
 
