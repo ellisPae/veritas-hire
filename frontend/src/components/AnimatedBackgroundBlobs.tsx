@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 
+const EASE_CURVE: [number, number, number, number] = [0.42, 0, 0.58, 1];
+
 const AnimatedBackgroundBlobs = () => {
   const animationProps = {
     animate: {
@@ -9,7 +11,7 @@ const AnimatedBackgroundBlobs = () => {
       x: [0, 40, -40, 0],
       y: [0, -30, 30, 0],
     },
-    transition: { repeat: Infinity, duration: 26, ease: "easeInOut" },
+    transition: { repeat: Infinity, duration: 26, ease: EASE_CURVE },
   };
 
   return (
