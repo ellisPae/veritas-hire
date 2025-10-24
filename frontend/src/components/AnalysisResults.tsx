@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, XCircle, Lightbulb } from "lucide-react";
 import { AnalysisResultsProps, InsightType } from "@/types/analysis";
 import InsightModal from "./InsightModal";
+import { getScoreColor } from "@/utils/scoreColorHelpers";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -194,12 +195,6 @@ const MatchCard: React.FC<{
   score: number;
   onClick: () => void;
 }> = ({ label, score, onClick }) => {
-  const getTextColor = (value: number) => {
-    if (value >= 80) return "text-green-600";
-    if (value >= 60) return "text-amber-400";
-    return "text-red-600";
-  };
-
   return (
     <motion.div
       variants={itemVariants}
@@ -212,7 +207,7 @@ const MatchCard: React.FC<{
       <h3 className="font-bold text-gray-900 dark:text-white text-lg">
         {label}
       </h3>
-      <p className={`mt-3 text-3xl font-bold ${getTextColor(score)}`}>
+      <p className={`mt-3 text-3xl font-bold ${getScoreColor(score)}`}>
         {score}%
       </p>
     </motion.div>

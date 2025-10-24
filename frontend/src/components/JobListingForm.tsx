@@ -66,12 +66,12 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-7 max-w-xl mx-auto">
+    <form onSubmit={handleSubmit} className="space-y-5 max-w-xl mx-auto">
       {/* Job Title */}
-      <div>
+      <div className="mt-6">
         <label
           htmlFor="title"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          className="block text-sm font-semibold text-gray-700 dark:text-gray-300"
         >
           Job Title
         </label>
@@ -81,11 +81,11 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
           type="text"
           value={form.title || ""}
           onChange={handleChange}
-          placeholder="e.g. Frontend Software Engineer"
+          placeholder="e.g. Front-End Software Engineer"
           className="mt-2 w-full rounded-lg border border-gray-300 dark:border-gray-700 
-                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-sm text-gray-900 dark:text-white 
+                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 
                      shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 
-                     dark:focus:ring-blue-700 transition"
+                     dark:focus:ring-blue-700 transition text-sm"
         />
       </div>
 
@@ -93,7 +93,7 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
       <div>
         <label
           htmlFor="company"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          className="block text-sm font-semibold text-gray-700 dark:text-gray-300"
         >
           Company
         </label>
@@ -105,9 +105,9 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
           onChange={handleChange}
           placeholder="e.g. Veritas Hire"
           className="mt-2 w-full rounded-lg border border-gray-300 dark:border-gray-700 
-                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-sm text-gray-900 dark:text-white 
+                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 
                      shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 
-                     dark:focus:ring-blue-700 transition"
+                     dark:focus:ring-blue-700 transition text-sm"
         />
       </div>
 
@@ -115,7 +115,7 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
       <div>
         <label
           htmlFor="location"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          className="block text-sm font-semibold text-gray-700 dark:text-gray-300"
         >
           Location <span className="text-xs text-gray-400">(optional)</span>
         </label>
@@ -125,11 +125,11 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
           type="text"
           value={form.location || ""}
           onChange={handleChange}
-          placeholder="e.g. Remote / San Francisco, CA"
+          placeholder="e.g. Remote / New York, NY"
           className="mt-2 w-full rounded-lg border border-gray-300 dark:border-gray-700 
-                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-sm text-gray-900 dark:text-white 
+                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 
                      shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 
-                     dark:focus:ring-blue-700 transition"
+                     dark:focus:ring-blue-700 transition text-sm"
         />
       </div>
 
@@ -137,7 +137,7 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
       <div>
         <label
           htmlFor="description"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          className="block text-sm font-semibold text-gray-700 dark:text-gray-300"
         >
           Job Description
         </label>
@@ -149,9 +149,9 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
           placeholder="Paste the full job description here..."
           rows={8}
           className="mt-2 w-full rounded-lg border border-gray-300 dark:border-gray-700 
-                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-sm text-gray-900 dark:text-white 
+                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 
                      shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 
-                     dark:focus:ring-blue-700 transition resize-none"
+                     dark:focus:ring-blue-700 transition resize-none text-sm"
         />
       </div>
 

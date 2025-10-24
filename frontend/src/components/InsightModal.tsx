@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { InsightModalProps } from "@/types/analysis";
+import { getScoreColor } from "@/utils/scoreColorHelpers";
 
 const InsightModal = ({ type, score, insight, onClose }: InsightModalProps) => {
   const renderNarrative = (text: string) => (
@@ -45,7 +46,9 @@ const InsightModal = ({ type, score, insight, onClose }: InsightModalProps) => {
               ? "Experience Match"
               : "Growth Potential"}
           </h3>
-          <p className="text-3xl font-extrabold text-blue-600 mb-4">{score}%</p>
+          <p className={`text-3xl font-extrabold ${getScoreColor(score)} mb-4`}>
+            {score}%
+          </p>
 
           {/* Handle both string and object */}
           {typeof insight === "string" ? (
