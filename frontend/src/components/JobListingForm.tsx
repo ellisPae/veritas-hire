@@ -83,7 +83,7 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
           onChange={handleChange}
           placeholder="e.g. Front-End Software Engineer"
           className="mt-2 w-full rounded-lg border border-gray-300 dark:border-gray-700 
-                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 
+                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-500 
                      shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 
                      dark:focus:ring-blue-700 transition text-sm"
         />
@@ -105,7 +105,7 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
           onChange={handleChange}
           placeholder="e.g. Veritas Hire"
           className="mt-2 w-full rounded-lg border border-gray-300 dark:border-gray-700 
-                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 
+                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-500 
                      shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 
                      dark:focus:ring-blue-700 transition text-sm"
         />
@@ -127,7 +127,7 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
           onChange={handleChange}
           placeholder="e.g. Remote / New York, NY"
           className="mt-2 w-full rounded-lg border border-gray-300 dark:border-gray-700 
-                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 
+                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-500 
                      shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 
                      dark:focus:ring-blue-700 transition text-sm"
         />
@@ -149,7 +149,7 @@ const JobListingForm = ({ onSubmit }: JobListingFormProps) => {
           placeholder="Paste the full job description here..."
           rows={8}
           className="mt-2 w-full rounded-lg border border-gray-300 dark:border-gray-700 
-                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 
+                     bg-gray-50 dark:bg-gray-800 px-4 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-500 
                      shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 
                      dark:focus:ring-blue-700 transition resize-none text-sm"
         />
