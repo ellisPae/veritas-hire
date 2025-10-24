@@ -80,7 +80,7 @@ const JobListingPage = () => {
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
             Tell Us About the Role
           </h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+          <p className="mt-2 text-gray-600 dark:text-gray-900 text-sm dark:text-white">
             Fill in the job details and let our AI reveal how they align with
             the right skills and experience.
             <br />
