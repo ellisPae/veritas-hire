@@ -1,11 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+
 import JobListingForm from "@/components/JobListingForm";
+import AnimatedBackgroundBlobs from "@/components/AnimatedBackgroundBlobs";
+
 import type { JobDetails } from "@/types/job";
 import demoJobListing from "@/../public/demo/demo-job-listing.json";
-import { useState } from "react";
 
 const JobListingPage = () => {
   const router = useRouter();
@@ -58,16 +61,7 @@ const JobListingPage = () => {
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 px-6">
       {/* Background blobs */}
-      <motion.div
-        className="absolute -top-32 -left-32 w-96 h-96 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-        animate={{ x: [0, 40, -40, 0], y: [0, -30, 30, 0] }}
-        transition={{ repeat: Infinity, duration: 18, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-        animate={{ x: [0, -40, 40, 0], y: [0, 30, -30, 0] }}
-        transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
-      />
+      <AnimatedBackgroundBlobs />
 
       {/* Card */}
       <motion.div

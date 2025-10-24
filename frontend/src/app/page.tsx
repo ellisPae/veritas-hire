@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import AnimatedBackgroundBlobs from "@/components/AnimatedBackgroundBlobs";
 
 // Animation timing constants
 const FADE_DURATION = 1.8;
@@ -64,16 +65,7 @@ const Home = () => {
   return (
     <main className="relative flex flex-col items-center justify-center min-h-screen px-6 py-12 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900">
       {/* Background blobs with infinite animations */}
-      <motion.div
-        className="absolute -top-32 -left-32 w-96 h-96 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-        animate={{ x: [0, 40, -40, 0], y: [0, -30, 30, 0] }}
-        transition={{ repeat: Infinity, duration: 22, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-        animate={{ x: [0, -40, 40, 0], y: [0, 30, -30, 0] }}
-        transition={{ repeat: Infinity, duration: 26, ease: "easeInOut" }}
-      />
+      <AnimatedBackgroundBlobs />
 
       {/* Main content container with initial animation */}
       <motion.div

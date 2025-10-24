@@ -2,8 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import ResumeUpload from "@/components/ResumeUpload";
 import { motion } from "framer-motion";
+
+import ResumeUpload from "@/components/ResumeUpload";
+import AnimatedBackgroundBlobs from "@/components/AnimatedBackgroundBlobs";
+
 import type { ResumeUploadState } from "@/types/resume";
 
 const ResumeUploadPage = () => {
@@ -67,17 +70,7 @@ const ResumeUploadPage = () => {
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 px-6">
-      {/* Background blobs */}
-      <motion.div
-        className="absolute -top-40 -left-40 w-96 h-96 bg-blue-400 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-        animate={{ x: [0, 40, -40, 0], y: [0, -30, 30, 0] }}
-        transition={{ repeat: Infinity, duration: 18, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -bottom-40 -right-40 w-96 h-96 bg-purple-400 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-        animate={{ x: [0, -40, 40, 0], y: [0, 30, -30, 0] }}
-        transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
-      />
+      <AnimatedBackgroundBlobs />
 
       {/* Card */}
       <motion.div
