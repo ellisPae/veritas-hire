@@ -18,9 +18,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/vh-logo.png" sizes="any" />
-      </head>
       <ClientLayout>{children}</ClientLayout>
     </html>
   );
