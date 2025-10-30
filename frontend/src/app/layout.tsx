@@ -1,40 +1,27 @@
-"use client";
-
-import { useEffect } from "react";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ClientLayout from "@/components/ClientLayout";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      sessionStorage.clear();
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
-
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+export const metadata = {
+  title: "Veritas Hire",
+  description: "AI-powered resume and job match analysis",
+  icons: {
+    icon: "/vh-logo.png",
+    shortcut: "/vh-logo.png",
+    apple: "/vh-logo.png",
+  },
 };
 
-export default RootLayout;
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <link rel="icon" href="/vh-logo.png" sizes="any" />
+      </head>
+      <ClientLayout>{children}</ClientLayout>
+    </html>
+  );
+}
