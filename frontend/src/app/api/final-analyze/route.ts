@@ -26,6 +26,17 @@ export const POST = async (req: Request) => {
       You are an experienced technical hiring manager and career analyst.
       Analyze and compare the candidate’s resume against the job listing below.
       Return your response **only** as a valid, well-structured JSON object in the following exact format:
+      Ensure all numeric fields are whole numbers (no decimals) and logically consistent (overallScore should generally fall between the lowest and highest sub-scores).
+      All numeric fields (overallScore, skillsMatch, experienceMatch, growthPotential) must be integer percentage scores between 0 and 100 (no decimals or fractions).
+      Each score must be independently reasoned and reflect its respective dimension:
+      - "skillsMatch" evaluates alignment between the resume's technical keywords, tools, and proficiencies with those emphasized in the job description.
+      - "skillsMatch" should weigh the quantity and relevance of overlapping technical terms, frameworks, and languages.
+      - "experienceMatch" reflects how closely the candidate’s past roles, responsibilities, and achievements align with the scope, seniority, and industry of the job listing.
+      - "growthPotential" measures the candidate’s capacity to succeed and adapt in this role based on trajectory, transferable strengths, and learnability.
+      The "overallScore" should represent a comprehensive, high-level synthesis of all these factors — a weighted, human-like judgment of fit that correlates with the sub-scores, giving slightly more weight to skillsMatch and experienceMatch, but not a strict arithmetic average.
+      
+      Return nothing except the JSON object — no prose, no preamble, no markdown formatting.
+
       Your "summary" field should be a cohesive narrative of 3–5 paragraphs that synthesizes technical strengths, growth areas, and overall trajectory — similar in tone and depth to a professional career review.
       {
         "overallScore": number,
@@ -62,7 +73,7 @@ export const POST = async (req: Request) => {
 
     const completion = await openai.chat.completions.create({
       model: MODEL,
-      temperature: 0.3,
+      temperature: 0.2,
       messages: [
         {
           role: "system",
