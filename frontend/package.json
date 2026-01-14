@@ -11,6 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "framer-motion": "^12.23.22",
     "lucide-react": "^0.544.0",
     "mammoth": "^1.11.0",
